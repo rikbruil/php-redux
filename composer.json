@@ -1,6 +1,6 @@
 {
   "name": "rikbruil/php-redux",
-  "description": "",
+  "description": "Port of the Redux library for PHP and for fun",
   "keywords": ["redux", "flux", "fsa"],
   "homepage": "https://github.com/rikbruil/php-redux",
   "license": "MIT",
