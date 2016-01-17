@@ -4,11 +4,13 @@ error_reporting(-1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+$port = 8080;
+
 const COUNT_ACTION = 'COUNT';
 
 // Add a reducer for a specific state key (count)
 $reducer = new \Rb\Rephlux\Reducer\ComposedReducer();
-$reducer->addReducer('pageviews', function ($state, $action) {
+$reducer->addReducer('count', function ($state, $action) {
     $type = $action['type'];
 
     if (COUNT_ACTION === $type) {
@@ -18,12 +20,12 @@ $reducer->addReducer('pageviews', function ($state, $action) {
     return $state;
 });
 
-$store = \Rb\Rephlux\Store::create($reducer, ['pageviews' => 0]);
+$store = \Rb\Rephlux\Store::create($reducer, ['count' => 0]);
 
 // Triggers when the state changes
 $store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
     $state = $store->getState();
-    echo 'Pageviews: ' . $state['pageviews'] . PHP_EOL;
+    echo 'State changed: ' . $state['count'] . PHP_EOL;
 });
 
 $middleware = new \Rb\Rephlux\Middleware\Chain();
@@ -48,7 +50,8 @@ $requestHandler = function (\React\Http\Request $request, \React\Http\Response $
     $promise->done(function () use ($response, $store) {
         sleep(1);
 
-        $response->end('Page views: ' . $store->getState()['pageviews']);
+        $state = $store->getState();
+        $response->end('Count: ' . $state['count']);
     });
 
     $deferred->resolve($resolved);
@@ -59,6 +62,8 @@ $socket = new \React\Socket\Server($loop);
 $server = new \React\Http\Server($socket);
 
 $server->on('request', $requestHandler);
+$socket->listen($port);
 
-$socket->listen(8080);
+echo 'Server started: http://localhost:' . $port . PHP_EOL;
+
 $loop->run();
