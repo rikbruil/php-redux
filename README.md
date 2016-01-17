@@ -37,15 +37,34 @@ $listener = function (\Rb\Replux\StoreInterface $store) {
     echo 'Counter: ' . $state . PHP_EOL;
 };
 
-// Middleware is allowed to replace the dispatch() method of the store.
+// Optional: Middleware is allowed to replace the dispatch() method of the store.
 // In this example it allows sending Promises that resolve to actions
-$middleware = new \Rb\Replux\Chain([
+$middleware = new \Rb\Rephlux\Middleware\Chain([
     new PromiseMiddleWare()
 ]);
 
 // Middlewares need to be applied to the store
 $middleware($store); // short-hand for: $middleware->bind($store);
 
-$store->dispatch(['type' => 'INCREMENT']); // This will update global state to 1
-$store->dispatch(['type' => 'DECREMENT']); // This will update global state back to 0
+// This will update global state to 1
+$store->dispatch(['type' => 'INCREMENT']);
+
+// We can safely dispatch promises due to the middleware
+$deferred = new Deferred();
+$promise = $deferred->promise();
+
+// The listeners won't dispatch until the promise is resolved.
+$store->dispatch($promise);
+
+// Will still return 1
+echo $store->getState() . PHP_EOL;
+
+sleep(2);
+
+// We will now resolve the promise, triggering the listeners
+// This will decrement global state back to 0
+$deferred->resolve(['type' => 'DECREMENT']);
+
+// Will now return 0
+echo $store->getState() . PHP_EOL;
 ```
