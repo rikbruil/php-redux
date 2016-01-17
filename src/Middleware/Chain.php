@@ -48,7 +48,7 @@ class Chain extends AbstractMiddleware
      *
      * @return $this
      */
-    public function bind(WrappableStoreInterface $store)
+    public function apply(WrappableStoreInterface $store)
     {
         $rest = $this->dispatchers;
 

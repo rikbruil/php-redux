@@ -28,7 +28,7 @@ class Middleware extends AbstractMiddleware
      *
      * @return $this
      */
-    public function bind(WrappableStoreInterface $store)
+    public function apply(WrappableStoreInterface $store)
     {
         return $this->registerDispatcher($this->dispatcher, $store);
     }

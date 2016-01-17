@@ -44,7 +44,7 @@ $middleware = new \Rb\Rephlux\Middleware\Chain([
 ]);
 
 // Middlewares need to be applied to the store
-$middleware($store); // short-hand for: $middleware->bind($store);
+$middleware($store); // short-hand for: $middleware->apply($store);
 
 // This will update global state to 1
 $store->dispatch(['type' => 'INCREMENT']);

@@ -6,6 +6,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rb\Rephlux\Dispatcher\DispatcherInterface;
 use Rb\Rephlux\Middleware\AbstractMiddleware;
+use Rb\Rephlux\Middleware\Chain;
 use Rb\Rephlux\Middleware\MiddlewareInterface;
 use Rb\Rephlux\WrappableStoreInterface;
 
@@ -13,7 +14,7 @@ class ChainSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Rb\Rephlux\Middleware\Chain');
+        $this->shouldHaveType(Chain::class);
         $this->shouldHaveType(AbstractMiddleware::class);
         $this->shouldHaveType(MiddlewareInterface::class);
     }
@@ -27,9 +28,8 @@ class ChainSpec extends ObjectBehavior
         $store->replaceDispatcher($dispatcherA)->shouldBeCalled();
         $store->replaceDispatcher($dispatcherB)->shouldBeCalled();
 
-
         $this->setDispatchers([$dispatcherA, $dispatcherB]);
 
-        $this->bind($store);
+        $this->apply($store);
     }
 }

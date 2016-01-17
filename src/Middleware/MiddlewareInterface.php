@@ -11,5 +11,5 @@ interface MiddlewareInterface
      *
      * @return $this
      */
-    public function bind(WrappableStoreInterface $store);
+    public function apply(WrappableStoreInterface $store);
 }
