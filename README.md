@@ -37,7 +37,7 @@ $reducer = function ($state, $action) {
 };
 
 // Create the application store with the reducer in place
-$store = new \Rb\Rephlux\Store::create($reducer, $initialState);
+$store = new \Rb\Redux\Store::create($reducer, $initialState);
 
 // Listeners are low-level functionality.
 // They can be used to feed state into other (third-party) components.
@@ -49,7 +49,7 @@ $listener = function (\Rb\Replux\StoreInterface $store) {
 
 // Optional: Middleware is allowed to replace the dispatch() method of the store.
 // In this example it allows sending Promises that resolve to actions
-$middleware = new \Rb\Rephlux\Middleware\Chain([
+$middleware = new \Rb\Redux\Middleware\Chain([
     new PromiseMiddleWare()
 ]);
 
