@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Rephlux library.
+ * This file is part of the Redux library.
  *
  * (c) Rik Bruil <rikbruil@users.noreply.github.com>
  *
@@ -9,7 +9,7 @@
  * with this source code in the LICENSE file.
  */
 
-namespace Rb\Rephlux\Dispatcher;
+namespace Rb\Redux\Dispatcher;
 
 abstract class AbstractDispatcher implements DispatcherInterface
 {

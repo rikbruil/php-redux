@@ -1,17 +1,18 @@
 <?php
 
-namespace spec\Rb\Rephlux\Dispatcher;
+namespace spec\Rb\Redux\Dispatcher;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rb\Rephlux\WrappableStoreInterface;
+use Rb\Redux\Dispatcher\PromiseDispatcher;
+use Rb\Redux\WrappableStoreInterface;
 use React\Promise\PromiseInterface;
 
 class PromiseDispatcherSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Rb\Rephlux\Dispatcher\PromiseDispatcher');
+        $this->shouldHaveType(PromiseDispatcher::class);
     }
 
     function it_should_dispatch_promises(PromiseInterface $action)

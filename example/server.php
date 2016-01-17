@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Rephlux library.
+ * This file is part of the Redux library.
  *
  * (c) Rik Bruil <rikbruil@users.noreply.github.com>
  *
@@ -18,7 +18,7 @@ $port = 8080;
 const COUNT_ACTION = 'COUNT';
 
 // Add a reducer for a specific state key (count)
-$reducer = new \Rb\Rephlux\Reducer\ComposedReducer();
+$reducer = new \Rb\Redux\Reducer\ComposedReducer();
 $reducer->addReducer('count', function ($state, $action) {
     $type = $action['type'];
 
@@ -29,16 +29,16 @@ $reducer->addReducer('count', function ($state, $action) {
     return $state;
 });
 
-$store = \Rb\Rephlux\Store::create($reducer, ['count' => 0]);
+$store = \Rb\Redux\Store::create($reducer, ['count' => 0]);
 
 // Triggers when the state changes
-$store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
+$store->subscribe(function (\Rb\Redux\StoreInterface $store) {
     $state = $store->getState();
     echo 'State changed: ' . $state['count'] . PHP_EOL;
 });
 
-$middleware = new \Rb\Rephlux\Middleware\Chain();
-$middleware->addDispatcher(new \Rb\Rephlux\Dispatcher\PromiseDispatcher());
+$middleware = new \Rb\Redux\Middleware\Chain();
+$middleware->addDispatcher(new \Rb\Redux\Dispatcher\PromiseDispatcher());
 
 $middleware($store);
 

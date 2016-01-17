@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\Rb\Rephlux\Reducer;
+namespace spec\Rb\Redux\Reducer;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rb\Rephlux\Reducer\CallableReducer;
-use Rb\Rephlux\Reducer\ComposedReducer;
-use Rb\Rephlux\Reducer\ReducerInterface;
+use Rb\Redux\Reducer\CallableReducer;
+use Rb\Redux\Reducer\ComposedReducer;
+use Rb\Redux\Reducer\ReducerInterface;
 
 class ComposedReducerSpec extends ObjectBehavior
 {

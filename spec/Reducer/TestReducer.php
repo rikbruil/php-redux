@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\Rb\Rephlux\Reducer;
+namespace spec\Rb\Redux\Reducer;
 
-use Rb\Rephlux\Reducer\CallableReducer;
+use Rb\Redux\Reducer\CallableReducer;
 
 class TestReducer extends CallableReducer
 {

@@ -1,8 +1,8 @@
 {
-  "name": "rikbruil/rephlux",
+  "name": "rikbruil/php-redux",
   "description": "",
   "keywords": ["redux", "flux", "fsa"],
-  "homepage": "https://github.com/rikbruil/redux-test",
+  "homepage": "https://github.com/rikbruil/php-redux",
   "license": "MIT",
   "authors": [
     {
@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Rb\\Rephlux\\": "src/"
+      "Rb\\Redux\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "spec\\Rb\\Rephlux\\": "spec/"
+      "spec\\Rb\\Redux\\": "spec/"
     }
   },
   "scripts": {

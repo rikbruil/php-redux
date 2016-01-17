@@ -11,5 +11,5 @@ code_coverage:
 
 suites:
   main:
-    namespace: Rb\Rephlux
-    psr4_prefix: Rb\Rephlux
+    namespace: Rb\Redux
+    psr4_prefix: Rb\Redux

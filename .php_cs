@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<'EOF'
-This file is part of the Rephlux library.
+This file is part of the Redux library.
 
 (c) Rik Bruil <rikbruil@users.noreply.github.com>
 

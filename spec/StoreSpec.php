@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Rb\Rephlux;
+namespace spec\Rb\Redux;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rb\Rephlux\Dispatcher\DispatcherInterface;
-use Rb\Rephlux\Exception\MissingTypeException;
-use Rb\Rephlux\Reducer\CallableReducer;
-use Rb\Rephlux\Store;
+use Rb\Redux\Dispatcher\DispatcherInterface;
+use Rb\Redux\Exception\MissingTypeException;
+use Rb\Redux\Reducer\CallableReducer;
+use Rb\Redux\Store;
 
 class StoreSpec extends ObjectBehavior
 {

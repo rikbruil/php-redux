@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Rb\Rephlux\Middleware;
+namespace spec\Rb\Redux\Middleware;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rb\Rephlux\Dispatcher\DispatcherInterface;
-use Rb\Rephlux\Middleware\MiddlewareInterface;
-use Rb\Rephlux\Middleware\Middleware;
-use Rb\Rephlux\WrappableStoreInterface;
+use Rb\Redux\Dispatcher\DispatcherInterface;
+use Rb\Redux\Middleware\MiddlewareInterface;
+use Rb\Redux\Middleware\Middleware;
+use Rb\Redux\WrappableStoreInterface;
 
 class MiddlewareSpec extends ObjectBehavior
 {

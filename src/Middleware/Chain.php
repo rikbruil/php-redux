@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Rephlux library.
+ * This file is part of the Redux library.
  *
  * (c) Rik Bruil <rikbruil@users.noreply.github.com>
  *
@@ -9,9 +9,9 @@
  * with this source code in the LICENSE file.
  */
 
-namespace Rb\Rephlux\Middleware;
+namespace Rb\Redux\Middleware;
 
-use Rb\Rephlux\WrappableStoreInterface;
+use Rb\Redux\WrappableStoreInterface;
 
 class Chain extends AbstractMiddleware
 {
