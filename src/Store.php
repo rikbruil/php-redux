@@ -6,7 +6,7 @@ use Rb\Rephlux\Exception\InvalidFlowException;
 use Rb\Rephlux\Exception\MissingTypeException;
 use Rb\Rephlux\Middleware\MiddlewareInterface;
 
-final class Store implements StoreInterface
+final class Store implements StoreInterface, WrappableStoreInterface
 {
     const INIT = '@@INIT';
 
@@ -48,7 +48,7 @@ final class Store implements StoreInterface
     {
         self::$reducer    = $reducer;
         self::$state      = $initialState;
-        self::$dispatcher = [$this, 'dispatcher'];
+        self::$dispatcher = [$this, 'baseDispatcher'];
     }
 
     /**
@@ -99,13 +99,11 @@ final class Store implements StoreInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $action
      *
-     * @throws \InvalidArgumentException
-     * @throws MissingTypeException
-     * @throws InvalidFlowException
+     * @return array
      */
-    public function dispatch($action)
+    private function baseDispatcher($action)
     {
         if (!is_array($action)) {
             throw new \InvalidArgumentException('Action must be an array');
@@ -138,6 +136,30 @@ final class Store implements StoreInterface
         }
 
         return $action;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \InvalidArgumentException
+     * @throws MissingTypeException
+     * @throws InvalidFlowException
+     */
+    public function dispatch($action)
+    {
+        $dispatcher = self::$dispatcher;
+
+        return call_user_func($dispatcher, $action);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function replaceDispatcher(callable $dispatcher)
+    {
+        self::$dispatcher = $dispatcher;
+
+        return $this;
     }
 
     /**

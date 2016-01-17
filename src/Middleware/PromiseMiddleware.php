@@ -3,6 +3,7 @@
 namespace Rb\Rephlux\Middleware;
 
 use Rb\Rephlux\StoreInterface;
+use Rb\Rephlux\WrappableStoreInterface;
 use React\Promise\PromiseInterface;
 
 /*
@@ -19,9 +20,11 @@ class PromiseMiddleware extends AbstractMiddleware
     /**
      * {@inheritdoc}
      */
-    public function wrapStore(StoreInterface $store)
+    public function wrapStore(WrappableStoreInterface $store)
     {
         $this->parent = $store;
+
+        $store->replaceDispatcher([$this, 'dispatch']);
 
         return $this;
     }

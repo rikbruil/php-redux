@@ -2,15 +2,8 @@
 
 namespace Rb\Rephlux;
 
-interface StoreInterface
+interface StoreInterface extends DispatcherInterface
 {
-    /**
-     * @param array $action The action to dispatch
-     *
-     * @return array
-     */
-    public function dispatch($action);
-
     /**
      * @return mixed
      */
