@@ -28,7 +28,8 @@ $store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
     echo 'Pageviews: ' . $state['pageviews'] . PHP_EOL;
 });
 
-$middleware = new PromiseMiddleware($store);
+$middleware = new PromiseMiddleware();
+$middleware($store);
 
 $requestHandler = function (\React\Http\Request $request, \React\Http\Response $response) use ($middleware) {
     $response->writeHead();

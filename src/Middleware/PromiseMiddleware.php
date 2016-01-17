@@ -9,7 +9,7 @@ use React\Promise\PromiseInterface;
  * todo: Move to separate package
  */
 
-class PromiseMiddleware implements MiddlewareInterface
+class PromiseMiddleware extends AbstractMiddleware
 {
     /**
      * @var StoreInterface
@@ -19,9 +19,11 @@ class PromiseMiddleware implements MiddlewareInterface
     /**
      * {@inheritdoc}
      */
-    public function __construct(StoreInterface $store)
+    public function wrapStore(StoreInterface $store)
     {
         $this->parent = $store;
+
+        return $this;
     }
 
     /**

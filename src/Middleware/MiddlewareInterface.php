@@ -8,6 +8,8 @@ interface MiddlewareInterface extends StoreInterface
 {
     /**
      * @param StoreInterface $store
+     *
+     * @return $this
      */
-    public function __construct(StoreInterface $store);
+    public function wrapStore(StoreInterface $store);
 }

@@ -14,10 +14,10 @@ class PromiseMiddlewareSpec extends ObjectBehavior
     {
         $action->then([$store, 'dispatch'])->willReturn($action);
 
-        $this->beConstructedWith($store);
         $this->shouldHaveType(PromiseMiddleware::class);
         $this->shouldImplement(StoreInterface::class);
 
+        $this->wrapStore($store);
         $this->dispatch($action)->shouldReturn($action);
     }
 
@@ -27,10 +27,10 @@ class PromiseMiddlewareSpec extends ObjectBehavior
 
         $store->dispatch($action)->willReturn($action);
 
-        $this->beConstructedWith($store);
         $this->shouldHaveType(PromiseMiddleware::class);
         $this->shouldImplement(StoreInterface::class);
 
+        $this->wrapStore($store);
         $this->dispatch($action)->shouldReturn($action);
     }
 }

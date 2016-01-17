@@ -55,7 +55,7 @@ final class Store implements StoreInterface
      * Creates a new store for this app.
      *
      * @param callable $reducer
-     * @param $initialState
+     * @param mixed    $initialState
      *
      * @return Store
      */

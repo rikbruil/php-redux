@@ -5,7 +5,7 @@ namespace Rb\Rephlux;
 interface StoreInterface
 {
     /**
-     * @param array $action
+     * @param array $action The action to dispatch
      *
      * @return array
      */
