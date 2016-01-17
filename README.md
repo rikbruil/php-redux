@@ -31,7 +31,9 @@ $reducer = function ($state, $action) {
 // Create the application store with the reducer in place
 $store = new \Rb\Rephlux\Store::create($reducer, $initialState);
 
-// Register a listener that will fire when the application state changes
+// Listeners are low-level functionality.
+// They can be used to feed state into other (third-party) components.
+// Listeners will fire when application state changes.
 $listener = function (\Rb\Replux\StoreInterface $store) {
     $state = $store->getState();
     echo 'Counter: ' . $state . PHP_EOL;
