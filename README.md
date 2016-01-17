@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/rikbruil/php-redux.svg?branch=master)](https://travis-ci.org/rikbruil/php-redux)
 [![Coverage Status](https://coveralls.io/repos/rikbruil/php-redux/badge.svg?branch=master&service=github)](https://coveralls.io/github/rikbruil/php-redux?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/rikbruil/php-redux/v/stable)](https://packagist.org/packages/rikbruil/php-redux)
+[![License](https://poser.pugx.org/rikbruil/php-redux/license)](https://packagist.org/packages/rikbruil/php-redux)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rikbruil/php-redux/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rikbruil/php-redux/?branch=master)
 
 ## Installation
