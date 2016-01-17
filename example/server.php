@@ -1,7 +1,5 @@
 <?php
 
-use Rb\Rephlux\Middleware\Middleware;
-
 error_reporting(-1);
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -28,8 +26,8 @@ $store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
     echo 'Pageviews: ' . $state['pageviews'] . PHP_EOL;
 });
 
-$middleware = new Middleware();
-$middleware->setDispatcher(new \Rb\Rephlux\Dispatcher\PromiseDispatcher());
+$middleware = new \Rb\Rephlux\Middleware\Chain();
+$middleware->addDispatcher(new \Rb\Rephlux\Dispatcher\PromiseDispatcher());
 
 $middleware($store);
 
@@ -42,6 +40,7 @@ $requestHandler = function (\React\Http\Request $request, \React\Http\Response $
         return;
     }
 
+    $resolved = ['type' => COUNT_ACTION];
     $deferred = new \React\Promise\Deferred();
     $promise  = $deferred->promise();
     $store->dispatch($promise);
@@ -52,7 +51,7 @@ $requestHandler = function (\React\Http\Request $request, \React\Http\Response $
         $response->end('Page views: ' . $store->getState()['pageviews']);
     });
 
-    $deferred->resolve(['type' => COUNT_ACTION]);
+    $deferred->resolve($resolved);
 };
 
 $loop   = React\EventLoop\Factory::create();
