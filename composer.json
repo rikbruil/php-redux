@@ -1,6 +1,8 @@
 {
   "name": "rikbruil/rephlux",
-  "type": "library",
+  "description": "",
+  "keywords": ["redux", "flux", "fsa"],
+  "homepage": "https://github.com/rikbruil/rephlux",
   "license": "MIT",
   "authors": [
     {
@@ -8,6 +10,7 @@
       "email": "rikbruil@users.noreply.github.com"
     }
   ],
+  "type": "library",
   "require": {
     "php": ">=5.6"
   },
@@ -36,5 +39,10 @@
     "test": "vendor/bin/phpspec run -fpretty -v",
     "fix-style": "vendor/bin/php-cs-fixer fix",
     "example": "php example/server.php"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
   }
 }
