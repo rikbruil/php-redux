@@ -4,6 +4,12 @@
 [![Coverage Status](https://coveralls.io/repos/rikbruil/php-redux/badge.svg?branch=master&service=github)](https://coveralls.io/github/rikbruil/php-redux?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rikbruil/php-redux/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rikbruil/php-redux/?branch=master)
 
+## Installation
+
+```bash
+composer require rikbruil/php-redux
+```
+
 ## Code example
 
 ```php
