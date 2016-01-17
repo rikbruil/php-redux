@@ -42,7 +42,7 @@ $store = new \Rb\Redux\Store::create($reducer, $initialState);
 // Listeners are low-level functionality.
 // They can be used to feed state into other (third-party) components.
 // Listeners will fire when application state changes.
-$listener = function (\Rb\Replux\StoreInterface $store) {
+$listener = function (\Rb\Redux\StoreInterface $store) {
     $state = $store->getState();
     echo 'Counter: ' . $state . PHP_EOL;
 };
