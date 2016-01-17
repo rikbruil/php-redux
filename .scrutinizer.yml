@@ -1,5 +1,11 @@
 checks:
-    php: true
+    php:
+        security_vulnerabilities: true
+        parameter_doc_comments: true
+        return_doc_comments: true
+        return_doc_comment_if_not_inferrable: true
+        param_doc_comment_if_not_inferrable: true
+        more_specific_types_in_doc_comments: true
 
 filter:
   excluded_paths:
