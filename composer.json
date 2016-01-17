@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "php": ">=5.5"
+    "php": ">=5.6"
   },
   "suggest": {
     "react/promise": "Required if you want to use the Promise middleware"
@@ -18,7 +18,8 @@
     "phpspec/phpspec": "^2.4",
     "henrikbjorn/phpspec-code-coverage": "^2.0",
     "fabpot/php-cs-fixer": "^1.11",
-    "react/http": "^0.4.1"
+    "react/http": "^0.4.1",
+    "react/promise": "^2.2"
   },
   "autoload": {
     "psr-4": {
