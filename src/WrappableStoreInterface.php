@@ -5,9 +5,9 @@ namespace Rb\Rephlux;
 interface WrappableStoreInterface extends StoreInterface
 {
     /**
-     * @param array|callable $dispatcher
+     * @param callable $dispatcher
      *
      * @return $this
      */
-    public function replaceDispatcher($dispatcher);
+    public function replaceDispatcher(callable $dispatcher);
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Rb\Rephlux\Middleware\PromiseMiddleware;
+use Rb\Rephlux\Middleware\Middleware;
 
 error_reporting(-1);
 
@@ -28,7 +28,9 @@ $store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
     echo 'Pageviews: ' . $state['pageviews'] . PHP_EOL;
 });
 
-$middleware = new PromiseMiddleware();
+$middleware = new Middleware();
+$middleware->setDispatcher(new \Rb\Rephlux\Dispatcher\PromiseDispatcher());
+
 $middleware($store);
 
 $requestHandler = function (\React\Http\Request $request, \React\Http\Response $response) use ($store) {

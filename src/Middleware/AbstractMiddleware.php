@@ -11,6 +11,6 @@ abstract class AbstractMiddleware implements MiddlewareInterface
      */
     public function __invoke(WrappableStoreInterface $store)
     {
-        return $this->wrapStore($store);
+        return $this->bind($store);
     }
 }

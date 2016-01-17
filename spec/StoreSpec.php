@@ -4,6 +4,7 @@ namespace spec\Rb\Rephlux;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rb\Rephlux\Dispatcher\DispatcherInterface;
 use Rb\Rephlux\Exception\MissingTypeException;
 use Rb\Rephlux\Reducer\CallableReducer;
 use Rb\Rephlux\Store;
@@ -71,5 +72,22 @@ class StoreSpec extends ObjectBehavior
         $this->dispatch($action);
         $this->replaceReducer($reducerB);
         $this->dispatch($action);
+    }
+
+    function it_should_return_current_dispatcher(CallableReducer $reducer)
+    {
+        $state = [];
+
+        $this->beConstructedThrough('create', [$reducer, $state]);
+
+        $this->getCurrentDispatcher()->shouldHaveType(\Closure::class);
+    }
+
+    function it_should_replace_dispatcher(DispatcherInterface $dispatcher)
+    {
+        $this->getCurrentDispatcher()->shouldHaveType(\Closure::class);
+
+        $this->replaceDispatcher($dispatcher);
+        $this->getCurrentDispatcher()->shouldEqual($dispatcher);
     }
 }

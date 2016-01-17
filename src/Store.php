@@ -151,12 +151,8 @@ final class Store implements StoreInterface, WrappableStoreInterface
     /**
      * {@inheritdoc}
      */
-    public function replaceDispatcher($dispatcher)
+    public function replaceDispatcher(callable $dispatcher)
     {
-        if (!is_callable($dispatcher) && !is_array($dispatcher)) {
-            throw new \InvalidArgumentException();
-        }
-
         self::$dispatcher = $dispatcher;
 
         return $this;

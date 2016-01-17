@@ -2,7 +2,7 @@
 
 namespace Rb\Rephlux;
 
-interface DispatcherInterface
+interface DispatcherStoreInterface
 {
     /**
      * @param array $action The action to dispatch

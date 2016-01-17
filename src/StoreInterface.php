@@ -2,7 +2,7 @@
 
 namespace Rb\Rephlux;
 
-interface StoreInterface extends DispatcherInterface
+interface StoreInterface extends DispatcherStoreInterface
 {
     /**
      * @return mixed
