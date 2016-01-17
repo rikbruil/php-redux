@@ -2,7 +2,6 @@
 
 namespace Rb\Rephlux\Middleware;
 
-use Rb\Rephlux\Dispatcher\DispatcherInterface;
 use Rb\Rephlux\WrappableStoreInterface;
 
 class Chain extends AbstractMiddleware
@@ -54,14 +53,9 @@ class Chain extends AbstractMiddleware
         $rest = $this->dispatchers;
 
         foreach ($rest as $dispatcher) {
-            $last = $store->getCurrentDispatcher();
-            $store->replaceDispatcher($dispatcher);
-
-            if (!($dispatcher instanceof DispatcherInterface)) {
-                continue;
-            }
-
-            $dispatcher->setCurrentDispatcher($last);
+            $this->registerDispatcher($dispatcher, $store);
         }
+
+        return $this;
     }
 }

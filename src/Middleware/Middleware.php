@@ -2,7 +2,6 @@
 
 namespace Rb\Rephlux\Middleware;
 
-use Rb\Rephlux\Dispatcher\DispatcherInterface;
 use Rb\Rephlux\WrappableStoreInterface;
 
 /*
@@ -29,19 +28,12 @@ class Middleware extends AbstractMiddleware
     }
 
     /**
-     * {@inheritdoc}
+     * @param WrappableStoreInterface $store
+     *
+     * @return $this
      */
     public function bind(WrappableStoreInterface $store)
     {
-        $oldDispatcher = $store->getCurrentDispatcher();
-        $newDispatcher = $this->dispatcher;
-
-        if ($newDispatcher instanceof  DispatcherInterface) {
-            $newDispatcher->setCurrentDispatcher($oldDispatcher);
-        }
-
-        $store->replaceDispatcher($newDispatcher);
-
-        return $this;
+        return $this->registerDispatcher($this->dispatcher, $store);
     }
 }
