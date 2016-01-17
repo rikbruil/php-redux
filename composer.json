@@ -1,0 +1,38 @@
+{
+  "name": "rikbruil/rephlux",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rik Bruil",
+      "email": "rikbruil@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "php": "^5.6"
+  },
+  "suggest": {
+    "react/promise": "Required if you want to use the Promise middleware"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^2.4",
+    "henrikbjorn/phpspec-code-coverage": "^2.0",
+    "fabpot/php-cs-fixer": "^1.11",
+    "react/http": "^0.4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rb\\Rephlux\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Rb\\Rephlux\\": "spec/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpspec run",
+    "fix-style": "vendor/bin/php-cs-fixer fix",
+    "example": "php example/server.php"
+  }
+}
