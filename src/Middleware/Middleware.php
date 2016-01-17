@@ -4,10 +4,6 @@ namespace Rb\Rephlux\Middleware;
 
 use Rb\Rephlux\WrappableStoreInterface;
 
-/*
- * todo: Move to separate package
- */
-
 class Middleware extends AbstractMiddleware
 {
     /**

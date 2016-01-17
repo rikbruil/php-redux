@@ -4,6 +4,10 @@ namespace Rb\Rephlux\Dispatcher;
 
 use React\Promise\PromiseInterface;
 
+/*
+ * todo: Move to separate package
+ */
+
 class PromiseDispatcher extends AbstractDispatcher
 {
     /**
