@@ -33,7 +33,7 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpspec run",
+    "test": "vendor/bin/phpspec run -fpretty -v",
     "fix-style": "vendor/bin/php-cs-fixer fix",
     "example": "php example/server.php"
   }
