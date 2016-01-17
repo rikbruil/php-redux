@@ -17,7 +17,7 @@ class PromiseMiddlewareSpec extends ObjectBehavior
         $this->shouldHaveType(PromiseMiddleware::class);
         $this->shouldImplement(StoreInterface::class);
 
-        $this->wrapStore($store);
+        $this->__invoke($store);
         $this->dispatch($action)->shouldReturn($action);
     }
 
@@ -32,5 +32,16 @@ class PromiseMiddlewareSpec extends ObjectBehavior
 
         $this->wrapStore($store);
         $this->dispatch($action)->shouldReturn($action);
+    }
+
+    function it_should_call_get_state_on_the_wrapped_object(StoreInterface $store)
+    {
+        $state = 'foo';
+
+        $store->getState()->willReturn($state);
+
+        $this->wrapStore($store);
+
+        $this->getState()->shouldReturn($state);
     }
 }
