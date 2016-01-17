@@ -4,7 +4,6 @@ namespace Rb\Rephlux;
 
 use Rb\Rephlux\Exception\InvalidFlowException;
 use Rb\Rephlux\Exception\MissingTypeException;
-use Rb\Rephlux\Middleware\MiddlewareInterface;
 
 final class Store implements StoreInterface, WrappableStoreInterface
 {
@@ -36,11 +35,6 @@ final class Store implements StoreInterface, WrappableStoreInterface
     protected static $dispatcher;
 
     /**
-     * @var MiddlewareInterface[]
-     */
-    protected static $middlewares = [];
-
-    /**
      * @param callable $reducer
      * @param mixed    $initialState
      */
@@ -48,7 +42,9 @@ final class Store implements StoreInterface, WrappableStoreInterface
     {
         self::$reducer    = $reducer;
         self::$state      = $initialState;
-        self::$dispatcher = [$this, 'baseDispatcher'];
+        self::$dispatcher = function ($action) {
+            return call_user_func([$this, 'baseDispatcher'], $action);
+        };
     }
 
     /**
@@ -126,7 +122,7 @@ final class Store implements StoreInterface, WrappableStoreInterface
 
         try {
             self::$isDispatching = true;
-            self::$state         = $reducer(self::$state, $action);
+            self::$state         = call_user_func_array($reducer, [self::$state, $action]);
         } finally {
             self::$isDispatching = false;
         }
@@ -155,8 +151,12 @@ final class Store implements StoreInterface, WrappableStoreInterface
     /**
      * {@inheritdoc}
      */
-    public function replaceDispatcher(callable $dispatcher)
+    public function replaceDispatcher($dispatcher)
     {
+        if (!is_callable($dispatcher) && !is_array($dispatcher)) {
+            throw new \InvalidArgumentException();
+        }
+
         self::$dispatcher = $dispatcher;
 
         return $this;
@@ -180,5 +180,13 @@ final class Store implements StoreInterface, WrappableStoreInterface
     public function getState()
     {
         return self::$state;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getCurrentDispatcher()
+    {
+        return self::$dispatcher;
     }
 }

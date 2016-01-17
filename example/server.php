@@ -31,7 +31,7 @@ $store->subscribe(function (\Rb\Rephlux\StoreInterface $store) {
 $middleware = new PromiseMiddleware();
 $middleware($store);
 
-$requestHandler = function (\React\Http\Request $request, \React\Http\Response $response) use ($middleware) {
+$requestHandler = function (\React\Http\Request $request, \React\Http\Response $response) use ($store) {
     $response->writeHead();
 
     if ($request->getPath() !== '/') {
@@ -42,12 +42,12 @@ $requestHandler = function (\React\Http\Request $request, \React\Http\Response $
 
     $deferred = new \React\Promise\Deferred();
     $promise  = $deferred->promise();
-    $middleware->dispatch($promise);
+    $store->dispatch($promise);
 
-    $promise->done(function () use ($response, $middleware) {
+    $promise->done(function () use ($response, $store) {
         sleep(1);
 
-        $response->end('Page views: ' . $middleware->getState()['pageviews']);
+        $response->end('Page views: ' . $store->getState()['pageviews']);
     });
 
     $deferred->resolve(['type' => COUNT_ACTION]);

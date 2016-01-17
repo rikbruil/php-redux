@@ -2,7 +2,6 @@
 
 namespace Rb\Rephlux\Middleware;
 
-use Rb\Rephlux\StoreInterface;
 use Rb\Rephlux\WrappableStoreInterface;
 use React\Promise\PromiseInterface;
 
@@ -13,46 +12,35 @@ use React\Promise\PromiseInterface;
 class PromiseMiddleware extends AbstractMiddleware
 {
     /**
-     * @var StoreInterface
-     */
-    private $parent;
-
-    /**
      * {@inheritdoc}
      */
     public function wrapStore(WrappableStoreInterface $store)
     {
-        $this->parent = $store;
+        $oldDispatcher = $store->getCurrentDispatcher();
+        $dispatcher    = $this->getDispatcher($oldDispatcher);
 
-        $store->replaceDispatcher([$this, 'dispatch']);
+        $store->replaceDispatcher($dispatcher);
 
         return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * @param callable $dispatch
      *
-     * @param array|PromiseInterface $action
+     * @return \Closure
      */
-    public function dispatch($action)
+    public function getDispatcher(callable $dispatch)
     {
-        $wrapped  = $this->parent;
-        $dispatch = [$wrapped, 'dispatch'];
+        /*
+         * @param $action
+         * @return mixed|PromiseInterface
+         */
+        return function ($action) use ($dispatch) {
+            if ($action instanceof PromiseInterface) {
+                return $action->then($dispatch);
+            }
 
-        if ($action instanceof PromiseInterface) {
-            return $action->then($dispatch);
-        }
-
-        return call_user_func($dispatch, $action);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getState()
-    {
-        $wrapped = $this->parent;
-
-        return call_user_func([$wrapped, 'getState']);
+            return call_user_func($dispatch, $action);
+        };
     }
 }

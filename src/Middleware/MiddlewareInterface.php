@@ -2,10 +2,9 @@
 
 namespace Rb\Rephlux\Middleware;
 
-use Rb\Rephlux\StoreInterface;
 use Rb\Rephlux\WrappableStoreInterface;
 
-interface MiddlewareInterface extends StoreInterface
+interface MiddlewareInterface
 {
     /**
      * @param WrappableStoreInterface $store

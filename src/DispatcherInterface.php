@@ -10,4 +10,9 @@ interface DispatcherInterface
      * @return array
      */
     public function dispatch($action);
+
+    /**
+     * @return callable
+     */
+    public function getCurrentDispatcher();
 }
