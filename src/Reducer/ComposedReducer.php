@@ -51,7 +51,8 @@ class ComposedReducer extends CallableReducer
     public function reduce($state, array $action)
     {
         foreach ($this->reducers as $key => $reducer) {
-            $state[$key] = $reducer($state[$key], $action);
+            $currentState = isset($state[$key]) ? $state[$key] : null;
+            $state[$key] = $reducer($currentState, $action);
         }
 
         return $state;
